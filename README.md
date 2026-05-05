@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# El Cinex (buscador-películas-API(TMDb))
+[![React](https://img.shields.io/badge/React-19.0.0-61dafb?style=flat&logo=react)](https://reactjs.org/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-f7df1e?style=flat&logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![CSS3](https://img.shields.io/badge/CSS3-1572b6?style=flat&logo=css3)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![TMDb](https://img.shields.io/badge/TMDb-API-01d277?style=flat&logo=themoviedatabase)](https://developers.themoviedb.org/3)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicación web para buscar y descubrir películas utilizando la API de The Movie Database (TMDb) con buscador, filtros y diseño web responsive.
 
-## Available Scripts
+## Vista previa (capturas)
+| Vista principal | Vista móvil |
+|----------------|----------|
+| ![Vista principal](./screenshots/00-screenshot-Macbook-Air.png) | ![Búsqueda](./screenshots/06-screenshot-iPhone-14-PRO.png) |
 
-In the project directory, you can run:
+| Búsqueda con filtros | Búsqueda no encontrada |
+|----------------|----------|
+| ![Vista principal](./screenshots/04-screenshot-buscador_y_filtros.png) | ![Búsqueda](./screenshots/05-screenshot-no_se_encuentran_referencias.png) |
 
-### `npm start`
+## Características y Funcionalidades principales
+- Búsqueda de películas por título
+- Filtros por género (Acción, Comedia, Drama, etc.)
+- Filtros por año de lanzamiento (1900 - actualidad)
+- Ordenado ascendente/descendente
+- Búsqueda avanzada: búsqueda + filtros (funcionan juntos)
+- Permite iniciar búsquedas con "Enter"
+- Diseño responsive adaptado a móviles
+- Manejo de estados con carga y errores
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tecnologías utilizadas
+- React
+- CSS3
+- JavaScript
+- TMDb API
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Notas
+- Para arrancar el proyecto se necesita configurar la API key para ello se debe crear un archivo `.env` en la raíz del proyecto y colocarle la Key de la siguiente manera `REACT_APP_TMDB_API_KEY="api_key"`
 
-### `npm test`
+## Descripción de **flujo de trabajo**
+El proyecto se dividió en varias faces
+- Preparación de herramientas
+- conexión con la API de TMDb
+- Construcción de la interfaz de usuario
+- Construcción de la lógica de filtrado
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Como funciona cada archivo
+Componente principal `App.js` se encarga de mostrar las películas con sus filtros activos.
+`tmdbService.js` maneja toda la lógica de la comunicación con la API (TMDb)
+`searchBar` `MovieList` y `Filters` manejan la estructura de la aplicación y sus funciones de búsqueda, filtrado y como se muestran los resultados
 
-### `npm run build`
+## Aprendizajes
+- Reforze mis conocimientos para integrar React con una API externa implementando consultas y manejo de la información obtenida
+- Aprendí un mejor uso de "Manejo de errores" utilizando "try/catch" para errores de red y de API
+- Aprendí a implementar de mejor manera la lógica de filtrado y búsqueda como filtros combinados y limpieza de datos
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Errores y características faltantes
+- No muestra correctamente el orden ascendente cuando se realiza una búsqueda con nombre y filtros
+- Falta agregar ventanas con información detallada al hacer click en una película
+- Falta agregar lista de favoritos
+- Toda la parte de CSS falta pulirla
+  - Se utilizaron EmoJis en lugar de iconos para facilitar los estilos en CSS
+  - Falta agregar mejores estilos CSS
+  - Falta agregar mejores animaciones
