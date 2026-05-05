@@ -1,38 +1,419 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+:root {
+  --color-back: #0c0c17;
+  --color-back2: #1a1a41;
+  --color-text: #eee;
+  --color-text2: #aaa;
+  --color-button-clear: #dc3545;
+  --color-gradient-navbar: linear-gradient(-90deg, #109292 0%, #881a86 100%); /* bd009d & aa0011 */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  --primary-color: #007bff;
+  --primary-dark: #0056b3;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --dark-bg: #1a1a2e;
+  --card-bg: #16213e;
+  --text-light: #eeeeee;
+  --text-dark: #858585;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.2);
+  --transition: all 0.3s ease;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/** -------------------- -------------------- */
+/**             Configuracion Base            */
+/** -------------------- -------------------- */
+body {
+  font-family: "Poppins", 'Segoe UI', Tahoma, sans-serif;
+  background: var(--color-back);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--text-dark);
 }
-
-.App-link {
-  color: #61dafb;
+.app-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  animation: fadeIn 0.5s ease-in;
 }
-
-@keyframes App-logo-spin {
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(-20px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+/** -------------------- -------------------- */
+/**                   Titulo                  */
+/** -------------------- -------------------- */
+.app-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--color-text);
+  text-shadow: 4px 4px 8px rgba(255, 255, 255, 0.3); /* Experimental */
+  animation: slideDown 0.5s ease-out;
+}
+.app-subTitle {
+  color: #7c7c7c;
+  text-align: center;
+  margin-bottom: 30px;
+  animation: slideDown 0.5s ease-out;
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/** -------------------- -------------------- */
+/**             Barra de busqueda             */
+/** -------------------- -------------------- */
+.search-container {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: var(--color-back2);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.search-form {
+  display: flex;
+  gap: 10px;
+}
+.search-input {
+  color: var(--color-text);
+  background-color: var(--color-back2);
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #c4bdd8;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.search-input :focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+/** -------------------- boton BUSCAR */
+.search-button {
+  padding: 10px 20px;
+  color: var(--color-text);
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.search-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+.search-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+/** -------------------- boton LIMPIAR */
+.clear-button {
+  padding: 10px 20px;
+  background-color: var(--color-button-clear);
+  color: var(--color-text);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.clear-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+/** -------------------- LABEL para "search info" */
+.search-info {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--color-text2);
+}
+/** -------------------- -------------------- */
+/**                  FILTROS                  */
+/** -------------------- -------------------- */
+/** -------------------- GENERO y AÑO (y un poco de Orden) */
+.filters-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: var(--color-back2);
+  border-radius: 8px;
+  align-items: center;
+}
+.filter-label {
+  color: var(--color-text2);
+  margin-right: 8px;
+  font-weight: bold;
+}
+.filter-select {
+  background-color: var(--color-back2);
+  color: var(--color-text);
+  padding: 5px; 
+  border-radius: 4px;
+}
+.filter-select:focus {
+  outline: none;
+  border-color: #881a86;
+}
+/** -------------------- ORDEN */
+
+/* BUSCAR FILTER ITEM */
+
+/* .order-buttons {
+  display: flex;
+  gap: 10px;
+} */
+
+.order-button {
+  color: var(--color-text);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: 1px solid var(--color-text2);
+}
+.order-button.active {
+  background: var(--primary-color);
+  color: var(--color-text);
+  border-color: var(--primary-color);
+}
+.order-button:hover:not(.active) {
+  border-color: var(--primary-color);
+  transform: translateY(-1px);
+}
+.clear-filters-button {
+  padding: 5px 10px;
+  background-color: var(--color-button-clear);
+  color: var(--color-text); /* ! change */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.clear-filters-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+/** -------------------- -------------------- */
+/**              BOTÓN LIMPIAR TODO           */
+/** -------------------- -------------------- */
+.clear-all-container {
+  text-align: right;
+  margin-bottom: 20px;
+}
+.clear-all-button {
+  padding: 5px 10px;
+  background: #1a1a41;
+  /* background: linear-gradient(135deg, #1a1a41, #109292); */
+  color: var(--color-text);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.clear-all-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+/** -------------------- -------------------- */
+/**            SECCIÓN DE RESULTADOS          */
+/** -------------------- -------------------- */
+.results-header {
+  margin: 30px 0 20px 0;
+  padding-bottom: 15px;
+  border-bottom: 3px solid var(--primary-color);
+}
+.results-title {
+  font-size: 1.8rem;
+  color: var(--color-text);
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+.active-filters-badge {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--text-dark);
+  border-left: 4px solid var(--primary-color);
+}
+.results-count {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+/** -------------------- -------------------- */
+/**         LISTA DE PELÍCULAS (GRID)         */
+/** -------------------- -------------------- */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+/** -------------------- -------------------- */
+/**            TARJETA DE PELÍCULA            */
+/** -------------------- -------------------- */
+.movie-card {
+  border: 1px solid var(--color-text2);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.movie-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+.movie-poster {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.movie-card:hover .movie-poster {
+  transform: scale(1.05);
+}
+.movie-info {
+  padding: 10px;
+}
+.movie-title {
+  color: var(--color-text2);
+  font-size: 16px;
+  margin: 0 0 5px 0;
+}
+.movie-year {
+  font-size: 14px;
+  color: var(--secondary-color);
+  margin-bottom: 5px 0;
+}
+.movie-rating {
+  background: linear-gradient(135deg, #f9d423, var(--color-button-clear));
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-weight: bold;
+  color: var(--color-text);
+  font-size: 12px;
+  margin: 5px 0; 
+}
+/** -------------------- -------------------- */
+/**               CARGA Y ERROR               */
+/** -------------------- -------------------- */
+.loading-state,
+.error-state,
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--color-back2);
+  border-radius: 12px;
+  margin: 40px 0;
+}
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+/*! Estudiar como es que funciona "keyframes spin" */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.error-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+/** -------------------- -------------------- */
+/**             RESPONSIVE DESIGN             */
+/** -------------------- -------------------- */
+/* ! Agregar mas media queries */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 15px;
+  }
+  .app-title {
+    font-size: 1.8rem;
+  }
+  .search-form {
+    flex-direction: column;
+    border-radius: 12px;
+  }
+  .search-input,
+  .search-button,
+  .clear-button {
+    border-radius: 8px;
+  }
+  .filters-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .filter-item {
+    width: 100%;
+  }
+  .order-buttons {
+    flex-direction: column;
+  }
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+  }
+  .movie-poster {
+    height: 240px;
+  }
+  .results-title {
+    font-size: 1.4rem;
+  }
+}
+@media (max-width: 480px) {
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  .movie-poster {
+    height: 200px;
+  }
+  .movie-info {
+    padding: 10px;
+  }
+  .movie-title {
+    font-size: 13px;
+  }
+}
+/** -------------------- -------------------- */
+/**          ANIMACIONES ADICIONALES          */
+/** -------------------- -------------------- */
+/* ! Cambiar y agregar mas animaciones */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.movie-card:hover .movie-rating {
+  animation: pulse 0.5s ease;
 }
